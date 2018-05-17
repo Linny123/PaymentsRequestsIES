@@ -28,16 +28,17 @@ import os
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = True
 
-SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
+
+
+SECRET_KEY = os.environ['SECRET_KEY']
+DEBUG = False
 DATABASES = {
     'default': dj_database_url.config(
-        default=config('DATABASE_URL')
+        default=os.environ['DATABASE_URL']
     )
 }
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
-
 
 # Application definition
 
@@ -172,3 +173,4 @@ SECURE_CONTENT_TYPE_NOSNIFF = False
 SECURE_HSTS_SECONDS = False
 SECURE_HSTS_INCLUDE_SUBDOMAINS = False
 SECURE_HSTS_PRELOAD = False
+
