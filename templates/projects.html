@@ -1,0 +1,51 @@
+<!-- templates/projects.html {'UPR': UPR, 'projects': all_projects}-->
+{% extends 'base.html' %}
+
+{% block title %}Projects {% endblock %}
+
+{% block content %}
+    <div class="container p-2">
+        <div class="text-center">
+            <h1 class="display-4">Projects</h1>
+        <p class="p-2">This is an overview of all the projects you are involved in.</p></div>
+        {% if user.is_authenticated %}
+
+         <table class="table table-striped ">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Budget</th>
+              <th scope="col">Spend</th>
+              <th scope="col">Left</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for project in projects %}
+                 <tr>
+                    <td scope="col"> {{ project.id }}</td>
+                    <td scope="col"><a href="/project/{{ project.id }}">{{ project.name }}</a></td>
+                    <td scope="col">{{ project.budget }}</td>
+                    <td scope="col">{{ project.spend }}</td>
+                    <td scope="col">{{ project.left }}</td>
+                    <td scope="col"></td>
+                </tr>
+            {% endfor %}
+
+
+          </tbody>
+        </table>
+
+
+    {% else %}
+
+        <div class="alert alert-danger">
+        <h4 class="alert-heading">Warning!</h4>
+         <p>To visit this page please first <a href="{% url 'login' %}" class="alert-link">login</a></p>
+        </div>
+    {% endif %}
+
+    </div>
+
+{% endblock %}

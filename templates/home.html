@@ -1,0 +1,19 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+
+{% block title %}Home {% endblock %}
+
+{% block content %}
+    <div class="text-center p-2">
+    <h1 class="display-4">Home</h1>
+    {% if user.is_authenticated %} Hi {{ user.username }}! - &nbsp;
+        <a href="{% url 'logout' %}"> logout</a>
+    {% else %}
+
+        <div class="alert alert-danger">
+        <h4 class="alert-heading">Warning!</h4>
+         <p>To visit this page please first <a href="{% url 'login' %}" class="alert-link">login</a></p>
+        </div>
+    {% endif %}
+    </div>
+{% endblock %}
