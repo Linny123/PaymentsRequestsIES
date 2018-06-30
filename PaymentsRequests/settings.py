@@ -146,10 +146,9 @@ WEB_LINK = "www.lindadecorte.nl"
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "assets"),
-    '/var/www/assets/',
-]
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'assets'),
+)
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
