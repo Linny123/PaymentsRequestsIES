@@ -9,36 +9,31 @@ https://docs.djangoproject.com/en/dev/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
-
 import os
+from decouple import config
+import dj_database_url
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'qp*i0&f5v)(=#j&^0=f%&rzy&2&76ptlptja5hf1#ry*it78ua'
 
-import os
-#SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
+# Allow all host hosts/domain names for this site
+ALLOWED_HOSTS = ['*']
 
 
+DATABASES = { 'default' : dj_database_url.config()}
 
-SECRET_KEY = os.environ['SECRET_KEY']
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
+
+#SECRET_KEY = os.environ['SECRET_KEY'] #TODO figure this thing out
 DEBUG = False
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ['DATABASE_URL']
-    )
-}
+SECRET_KEY = config('SECRET_KEY')
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
 
 # Application definition
 
@@ -87,12 +82,11 @@ WSGI_APPLICATION = 'PaymentsRequests.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+##}
 
 
 # Password validation
@@ -136,7 +130,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = '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'
+EMAIL_HOST_PASSWORD = config('sendgrid')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
@@ -173,4 +167,8 @@ SECURE_CONTENT_TYPE_NOSNIFF = False
 SECURE_HSTS_SECONDS = False
 SECURE_HSTS_INCLUDE_SUBDOMAINS = False
 SECURE_HSTS_PRELOAD = False
+
+# Configure Django App for Heroku.
+import django_heroku
+django_heroku.settings(locals())
 
