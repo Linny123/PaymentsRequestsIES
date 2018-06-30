@@ -3,7 +3,6 @@ Django==2.0
 gunicorn==19.8.1
 Markdown==2.6.6
 Pillow==3.3.0
-psycopg2==2.7.4
 whitenoise==3.3.1
 python-decouple==3.1
 django-heroku==0.3.1
