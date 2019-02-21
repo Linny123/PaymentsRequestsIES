@@ -142,8 +142,8 @@ TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
 
 # to email
 
-ACCOUNTANCY_PROGRAM = "lindadc90@gmail.com"
-WEB_LINK = "www.lindadecorte.nl"
+ACCOUNTANCY_PROGRAM = "billing@ies.be"
+WEB_LINK = "paymentrequest.herokuapp.com"
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 

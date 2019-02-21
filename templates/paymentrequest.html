@@ -6,7 +6,7 @@
 {% block content %}
     <div class="text-center p-2"> <h1 class="display-4">Payment Request</h1>
 
-        <p class="p-2">Here you can send in your Payment requests</p></div>
+        <p class="p-2">Please fill in the form below.</p></div>
 
 {% if user.is_authenticated %}
     <form method="POST" class="post-form" enctype="multipart/form-data">{% csrf_token %}
@@ -32,7 +32,7 @@
             <label for="InvoiceAmoun">Amount in €*</label>
             {{ form.amount }}
             <small id="passwordHelpBlock" class="form-text text-muted">
-  If your invoice is not in Euro's please use <a href="https://www.oanda.com/currency/converter/">Oanda</a> to convert your currenty to Euro's. Please do not forget to change the date to date on your invoice.
+  If your invoice is not in Euro please use <a href="https://www.oanda.com/currency/converter/">Oanda</a> to convert your currency to Euros.
 </small>
 
             <div >{{ form.amount.errors }}</div>
@@ -47,7 +47,7 @@
             <label for="Invoiceinput"> Upload your invoice*</label>
             {{ form.invoice }}
             <small id="passwordHelpBlock" class="form-text text-muted">
-  The invoice has to be an image or an pdf
+  The invoice has to be in jpg or pdf formats
 </small>
             <div >{{ form.invoice.errors }}</div>
          </div>
